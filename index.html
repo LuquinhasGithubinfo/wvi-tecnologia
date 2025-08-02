@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WVI Tecnologia</title>
+
+  <!-- Font Awesome para ícones -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
+  <style>
+    * {margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',sans-serif;}
+    html{scroll-behavior:smooth;}
+    body {background: linear-gradient(135deg,#0d1b2a,#1b263b);color:#fff;overflow-x:hidden;}
+
+    /* Header com logo */
+    header {
+      display:flex;justify-content:space-between;align-items:center;
+      padding:20px 60px;position:fixed;width:100%;top:0;left:0;
+      background:rgba(0,0,0,0.4);backdrop-filter:blur(8px);z-index:1000;
+      animation:fadeInDown 1.5s ease;box-shadow:0 4px 10px rgba(0,0,0,0.3);
+    }
+    .logo-container {
+      display:flex;align-items:center;gap:10px;
+    }
+    .logo-container img {
+      height:50px;width:auto;pointer-events:none;
+    }
+    .logo-container span {
+      font-size:22px;font-weight:bold;color:#00b4d8;letter-spacing:1px;
+    }
+    nav a {
+      color:#fff;text-decoration:none;margin:0 15px;position:relative;transition:0.3s;
+      font-weight:500;
+    }
+    nav a::after {
+      content:'';position:absolute;width:0;height:2px;background:#00b4d8;left:0;bottom:-5px;transition:0.3s;
+    }
+    nav a:hover::after {width:100%;}
+    nav a:hover {color:#00e0ff;}
+
+    /* Hero */
+    .hero {
+      height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:20px;
+      background:url('A_digital_graphic_design_of_a_professional_website.png') center/cover no-repeat;
+      position:relative;
+    }
+    .hero::after {
+      content:'';position:absolute;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.4);
+    }
+    .hero-content {
+      position:relative;z-index:1;color:#00e0ff;
+      animation:fadeInUp 2s ease;
+      text-shadow: 0 0 15px rgba(0,178,255,0.7);
+    }
+    .hero h2 {font-size:50px;margin-bottom:20px;font-weight:700;}
+    .hero p {font-size:20px;max-width:700px;margin:auto;}
+    .hero a {
+      margin-top:30px;display:inline-block;
+      background:linear-gradient(90deg,#00b4d8,#00e0ff);
+      color:#fff;padding:15px 30px;border-radius:30px;text-decoration:none;font-weight:bold;
+      animation:pulse 2s infinite;transition:0.3s;
+    }
+    .hero a:hover {opacity:0.85;}
+
+    @keyframes fadeInUp {from{opacity:0;transform:translateY(30px);}to{opacity:1;transform:translateY(0);}}
+    @keyframes fadeInDown {from{opacity:0;transform:translateY(-30px);}to{opacity:1;transform:translateY(0);}}
+    @keyframes pulse {
+      0%{box-shadow:0 0 0 0 rgba(0,178,255,0.7);}
+      70%{box-shadow:0 0 0 20px rgba(0,178,255,0);}
+      100%{box-shadow:0 0 0 0 rgba(0,178,255,0);}
+    }
+    @keyframes zoomIn {from{opacity:0;transform:scale(0.8);}to{opacity:1;transform:scale(1);}}
+
+    /* Seções */
+    section {padding:100px 20px;max-width:1200px;margin:auto;animation:fadeInUp 1.5s ease;}
+    h2.section-title{text-align:center;font-size:36px;margin-bottom:60px;position:relative;color:#00e0ff;}
+    h2.section-title::after{content:'';width:60px;height:4px;background:#00b4d8;display:block;margin:10px auto;border-radius:2px;}
+
+    .services {display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:30px;}
+    .service-card {
+      background:rgba(255,255,255,0.05);padding:30px;border-radius:15px;text-align:center;transition:0.3s;position:relative;animation:zoomIn 1s ease;
+      border:1px solid rgba(0,178,255,0.2);
+    }
+    .service-card i {font-size:40px;color:#00e0ff;margin-bottom:20px;transition:0.3s;}
+    .service-card:hover {transform:translateY(-10px) scale(1.05);background:rgba(0,0,0,0.3);}
+    .service-card:hover i{color:#00b4d8;}
+
+    /* Estatísticas */
+    .stats {display:flex;flex-wrap:wrap;justify-content:center;gap:40px;margin-top:60px;}
+    .stat {
+      text-align:center;background:rgba(0,0,0,0.3);padding:30px 40px;border-radius:15px;box-shadow:0 0 15px rgba(0,0,0,0.2);
+      border:1px solid rgba(0,178,255,0.3);
+    }
+    .counter {font-size:48px;color:#00e0ff;display:block;}
+    .stat p {margin-top:10px;font-size:18px;color:#a3dfff;}
+
+    /* Depoimentos */
+    .testimonials-section {margin-top:60px;}
+    .testimonials-section h2 {text-align:center;margin-bottom:10px;color:#00e0ff;}
+    .testimonials-section p.subtitle {text-align:center;margin-bottom:40px;color:#a3dfff;}
+    .carousel {display:flex;transition:transform 0.6s ease;}
+    .testimonial {
+      flex:0 0 100%;box-sizing:border-box;
+      background:#fff;color:#000;padding:30px;margin:0 10px;border-radius:15px;box-shadow:0 2px 10px rgba(0,0,0,0.2);
+      animation:fadeInUp 1.5s ease;
+    }
+
+    /* Contato */
+    .contact-section {margin-top:60px;animation:fadeInUp 1.5s ease;}
+    .contact-info {text-align:center;margin-bottom:40px;}
+    .contact-info p {margin:5px 0;color:#a3dfff;}
+    .contact-form {max-width:600px;margin:auto;display:flex;flex-direction:column;gap:15px;}
+    .contact-form input,.contact-form textarea {padding:10px;border-radius:8px;border:none;}
+    .contact-form button {
+      padding:12px;background:linear-gradient(90deg,#00b4d8,#00e0ff);
+      color:#fff;border:none;border-radius:30px;font-weight:bold;cursor:pointer;animation:pulse 2s infinite;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo-container">
+      <img src="img/logo.png" alt="WVI Logo">
+      <span>WVI Tecnologia</span>
+    </div>
+    <nav>
+      <a href="#inicio">Início</a>
+      <a href="#servicos">Serviços</a>
+      <a href="#sobre">Sobre</a>
+      <a href="#contato">Contato</a>
+    </nav>
+  </header>
+
+  <section class="hero" id="inicio">
+    <div class="hero-content">
+      <h2>Transforme sua Gestão Empresarial</h2>
+      <p>Integre soluções tecnológicas, automação e análise de dados para maximizar resultados de forma inovadora.</p>
+      <a href="https://wa.me/556499661018?text=Ol%C3%A1%2C%20estou%20entrando%20em%20contato%20atrav%C3%A9s%20do%20novo%20site%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es!" target="_blank">Entrar em Contato</a>
+    </div>
+  </section>
+
+  <section id="servicos">
+    <h2 class="section-title">Soluções Personalizadas</h2>
+    <div class="services">
+      <div class="service-card"><i class="fas fa-cash-register"></i><h3>Controle de Caixa Inteligente</h3><p>Visualize em tempo real entradas e saídas, com dashboards claros e relatórios inteligentes.</p></div>
+      <div class="service-card"><i class="fas fa-file-invoice"></i><h3>Emissão de Notas Fiscais</h3><p>Automatize e integre a emissão de NF-e e NFC-e ao seu sistema de vendas sem complicação.</p></div>
+      <div class="service-card"><i class="fas fa-boxes"></i><h3>Gestão de Estoque Eficiente</h3><p>Acompanhe movimentações, receba alertas e evite rupturas de produtos com facilidade.</p></div>
+      <div class="service-card"><i class="fas fa-chart-line"></i><h3>Administração Financeira Completa</h3><p>Planeje contas a pagar e receber, visualize fluxo de caixa e indicadores gerenciais.</p></div>
+    </div>
+    <div class="stats">
+      <div class="stat"><span class="counter" data-target="100">0</span><p>Clientes Satisfeitos</p></div>
+      <div class="stat"><span class="counter" data-target="10">0</span><p>Anos de Experiência</p></div>
+      <div class="stat"><span class="counter" data-target="200">0</span><p>Empresas Atendidas</p></div>
+      <div class="stat"><span class="counter" data-target="100">0%</span><p>Satisfação</p></div>
+    </div>
+  </section>
+
+  <section id="sobre" class="testimonials-section">
+    <h2>Sobre Nós</h2>
+    <p class="subtitle">Somos especialistas em soluções corporativas de automação e gestão. Nossa missão é levar tecnologia e praticidade para empresas que querem crescer com segurança e eficiência.</p>
+
+    <h2>Depoimentos de Nossos Clientes</h2>
+    <p class="subtitle">Histórias de sucesso de quem confia em nós</p>
+    <div class="carousel" id="testimonialCarousel">
+      <div class="testimonial"><strong>Eduardo Martins</strong>"A plataforma simplificou nosso financeiro e o controle de notas fiscais, agilizando nossa rotina."</div>
+      <div class="testimonial"><strong>Patrícia Silva</strong>"Hoje consigo ter relatórios claros e acompanhar vendas em tempo real de qualquer lugar."</div>
+      <div class="testimonial"><strong>João Pedro</strong>"A integração entre estoque e caixa trouxe muito mais confiança para nossa gestão diária."</div>
+      <div class="testimonial"><strong>Maria Fernanda</strong>"O suporte é impecável e a equipe sempre nos orienta rapidamente quando precisamos."</div>
+    </div>
+  </section>
+
+  <section id="contato" class="contact-section">
+    <h2 class="section-title">Entre em Contato</h2>
+    <p style="text-align:center;">Fale com nossa equipe e descubra a melhor solução para sua empresa.</p>
+    <div class="contact-info">
+      <p><strong>Endereço:</strong> R. Geraldo Gomes Junior, 99 - Jardim Liberdade, Itumbiara - GO, 75528-153</p>
+      <p><strong>Telefone:</strong> (64) 99966-1018</p>
+      <p><strong>E-mail:</strong> contato@wvitecnologia.com.br</p>
+    </div>
+    <form class="contact-form">
+      <input type="text" placeholder="Nome" required>
+      <input type="email" placeholder="Email" required>
+      <textarea placeholder="Mensagem" rows="5" required></textarea>
+      <button type="submit">Enviar</button>
+    </form>
+  </section>
+
+  <footer>
+    <p>© 2025 WVI Tecnologia. Todos os direitos reservados.</p>
+  </footer>
+
+  <script>
+    // Contador animado que para no valor final
+    const counters = document.querySelectorAll('.counter');
+    counters.forEach(counter => {
+      let target = +counter.dataset.target;
+      let count = 0;
+      function update() {
+        count++;
+        counter.innerText = count + (counter.innerText.includes('%') ? '%' : '');
+        if (count < target) {
+          setTimeout(update, 30);
+        }
+      }
+      update();
+    });
+
+    // Carrossel automático depoimentos
+    const carousel = document.getElementById('testimonialCarousel');
+    let index = 0;
+    setInterval(() => {
+      index = (index + 1) % carousel.children.length;
+      carousel.style.transform = `translateX(-${index * 100}%)`;
+    }, 4000);
+  </script>
+</body>
+</html>
